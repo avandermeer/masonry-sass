@@ -1,0 +1,50 @@
+		.masonry {
+
+			$item-gutter: 60px;
+			$breakpoints: (0px, 680px, $screen-md, 1400px, 1700px);
+			$sizes: (100%, 50%, 33.3333333%, 25%, 20%);
+
+			margin-left: $item-gutter;
+
+			.masonry-item {
+				margin-bottom: $item-gutter;
+
+				@for $i from 0 to length($breakpoints) {
+					@media screen and (min-width: nth($breakpoints, $i+1)) {
+						width: calc(#{nth($sizes, $i+1)} - #{$item-gutter});
+						&.large {
+							@if nth($sizes, $i+1) == 100% {
+								width: calc(#{ 1*nth($sizes, $i+1)} - #{$item-gutter});
+							} @else {
+								width: calc(#{ 2*nth($sizes, $i+1)} - #{$item-gutter});
+							}
+						}
+						&.x-large {
+							@if nth($sizes, $i+1) == 100% {
+								width: calc(#{ 1*nth($sizes, $i+1)} - #{$item-gutter});
+							} @else {
+								width: calc(#{ 3*nth($sizes, $i+1)} - #{$item-gutter});
+							}
+						}
+						&.max-large {
+
+								width: calc( 100% - #{$item-gutter});
+
+						}
+					}
+				}
+			}
+
+			.masonry-sizer {
+
+				@for $i from 0 to length($breakpoints) {
+					@media screen and (min-width: nth($breakpoints, $i+1)) {
+						width: calc(#{nth($sizes, $i+1)} - #{$item-gutter});
+					}
+				}
+			}
+			.masonry-gutter {
+				width: $item-gutter;
+			}
+
+		}
